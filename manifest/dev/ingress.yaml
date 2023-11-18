@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress-tcc231019
+  namespace: group-6
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: tcc-01.th1.proen.cloud
+    http:
+      paths:
+      - path: "/group-6/tcc231019(/|$)(.*)"
+        pathType: Prefix
+        backend:
+          service:
+            name: my-service-tcc231019
+            port:
+              number: 80

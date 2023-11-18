@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment-tcc231019
+  namespace: group-6
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app-tcc231019
+  template:
+    metadata:
+      labels:
+        app: my-app-tcc231019
+    spec:
+      containers:
+      - name: my-container-tcc231019
+        image: nutbodyslam053/ci:e0009de55ab757e6dc112f7b29679d55893ff088
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 80
+
+        envFrom:
+        - secretRef:
+          name: my-secret-tcc231019
+        - configMapRef:
+          name: my-configmap-tcc231019

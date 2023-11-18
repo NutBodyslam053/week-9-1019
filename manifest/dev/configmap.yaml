@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap-tcc231019
+  namespace: group-6
+data:
+  APP_CONFIG: |
+    GH_TOKEN: "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"
+    key2: value2
+    key3: value3
