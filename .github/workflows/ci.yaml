@@ -54,7 +54,7 @@ jobs:
     - name: Build & Push Docker image
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        image: nutbodyslam053/${{ github.repository }}
+        image: nutbodyslam053/ci
         tags: ${{ github.sha }}
         registry: ${{ env.REGISTRY }}
         username: ${{ secrets.DOCKER_USERNAME }}
