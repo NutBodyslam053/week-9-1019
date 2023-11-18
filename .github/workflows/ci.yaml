@@ -17,8 +17,8 @@ env:
   
 jobs:
   build:
-    runs-on: ubuntu-latest
-    # runs-on: self-hosted
+    # runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -37,17 +37,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        ref: develop  # This line specifies the branch to checkout
-        fetch-depth: 0  # Fetch all history for the branch
-        clean: true  # Clean the workspace before checking out the code
 
     - name: Lint with flake8
       run: |
@@ -59,17 +48,6 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-
-  pack:
-    runs-on: ubuntu-latest
-    needs: ['build', 'test']
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        ref: develop  # This line specifies the branch to checkout
-        fetch-depth: 0  # Fetch all history for the branch
-        clean: true  # Clean the workspace before checking out the code
 
     - name: Build & Push Docker image
       uses: mr-smithers-excellent/docker-build-push@v6
